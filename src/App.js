@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./Components/Auth/LoginPage";
+import Sidebar from "./Components/SideBar/SideBar"
+import UserModule from "./Components/UserModule/UserModule";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import { AuthContext } from "./Store/AuthContext";
 
-function App() {
+
+const App = () => {
+   
+  const authCtx=useContext(AuthContext)
+  const isLoggedIn=authCtx.isLoggedIn;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{display:'flex'}}>
+        {isLoggedIn && <Sidebar/>}
+
+        <Routes>
+          {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
+          {isLoggedIn && <Route path="/user" element={<UserModule />} />}
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
