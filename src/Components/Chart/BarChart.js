@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 const BarChart = () => {
   const canvasRef = useRef(null);
@@ -9,12 +9,14 @@ const BarChart = () => {
 
   const fetchChartData = async () => {
     try {
-      const response = await fetch('https://admin-panel-2b58f-default-rtdb.firebaseio.com/users.json');
+      const response = await fetch(
+        "https://admin-panel-2b58f-default-rtdb.firebaseio.com/users.json"
+      );
       const data = await response.json();
       const chartData = processData(data);
       drawChart(chartData);
     } catch (error) {
-      console.error('Error fetching chart data:', error);
+      console.error("Error fetching chart data:", error);
     }
   };
 
@@ -44,7 +46,7 @@ const BarChart = () => {
 
   const drawChart = (chartData) => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext("2d");
     const barWidth = 40;
     const chartHeight = 200;
     const chartMargin = 20;
@@ -62,18 +64,18 @@ const BarChart = () => {
       const y = chartHeight - value * heightScale;
       const barHeight = value * heightScale;
 
-      context.fillStyle = 'blue';
+      context.fillStyle = "blue";
       context.fillRect(x, y, barWidth, barHeight);
 
       //Now drawing labels
-      context.fillStyle = 'black';
+      context.fillStyle = "black";
       context.fillText(`${value} Users`, x, y - 10);
       context.fillText(chartData.labels[index], x, chartHeight + 15);
     });
   };
 
   return (
-    <div style={{paddingLeft:'2rem'}}>
+    <div style={{ paddingLeft: "2rem" }}>
       <h3>Bar Chart</h3>
       <canvas ref={canvasRef} width={400} height={250} />
     </div>

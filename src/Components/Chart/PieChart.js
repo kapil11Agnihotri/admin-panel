@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 const PieChart = () => {
   const canvasRef = useRef(null);
@@ -9,12 +9,14 @@ const PieChart = () => {
 
   const fetchChartData = async () => {
     try {
-      const response = await fetch('https://admin-panel-2b58f-default-rtdb.firebaseio.com/users.json');
+      const response = await fetch(
+        "https://admin-panel-2b58f-default-rtdb.firebaseio.com/users.json"
+      );
       const data = await response.json();
       const chartData = processData(data);
       drawChart(chartData);
     } catch (error) {
-      console.error('Error fetching chart data:', error);
+      console.error("Error fetching chart data:", error);
     }
   };
 
@@ -44,8 +46,8 @@ const PieChart = () => {
 
   const drawChart = (chartData) => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
+    const context = canvas.getContext("2d");
+    const colors = ["red", "green", "blue", "yellow", "orange", "purple"];
     const chartRadius = Math.min(canvas.width, canvas.height) / 2;
     const chartCenterX = canvas.width / 2;
     const chartCenterY = canvas.height / 2;
@@ -65,16 +67,26 @@ const PieChart = () => {
       context.beginPath();
       context.fillStyle = colors[index % colors.length];
       context.moveTo(chartCenterX, chartCenterY);
-      context.arc(chartCenterX, chartCenterY, chartRadius, startAngle, endAngle);
+      context.arc(
+        chartCenterX,
+        chartCenterY,
+        chartRadius,
+        startAngle,
+        endAngle
+      );
       context.closePath();
       context.fill();
 
       // Draw labels
-      const labelX = chartCenterX + Math.cos(startAngle + sliceAngle / 2) * (chartRadius / 2);
-      const labelY = chartCenterY + Math.sin(startAngle + sliceAngle / 2) * (chartRadius / 2);
-      context.fillStyle = 'black';
-      context.font = '12px Arial';
-      context.textAlign = 'center';
+      const labelX =
+        chartCenterX +
+        Math.cos(startAngle + sliceAngle / 2) * (chartRadius / 2);
+      const labelY =
+        chartCenterY +
+        Math.sin(startAngle + sliceAngle / 2) * (chartRadius / 2);
+      context.fillStyle = "black";
+      context.font = "12px Arial";
+      context.textAlign = "center";
       context.fillText(`${chartData.labels[index]} (${value})`, labelX, labelY);
 
       startAngle = endAngle;
