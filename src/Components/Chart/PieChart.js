@@ -4,47 +4,82 @@ const PieChart = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    fetchChartData();
+  });
+
+  const fetchChartData = async () => {
+    try {
+      const response = await fetch('https://admin-panel-2b58f-default-rtdb.firebaseio.com/users.json');
+      const data = await response.json();
+      const chartData = processData(data);
+      drawChart(chartData);
+    } catch (error) {
+      console.error('Error fetching chart data:', error);
+    }
+  };
+
+  const processData = (data) => {
+    const chartData = {
+      labels: [],
+      data: [],
+    };
+
+    const roles = {};
+
+    Object.values(data).forEach((user) => {
+      const role = user.role;
+
+      if (roles[role]) {
+        roles[role] += 1; // Increment count for the same role
+      } else {
+        roles[role] = 1; // Initialize count for a new role
+        chartData.labels.push(role); // Push role to labels array
+      }
+    });
+
+    chartData.data = Object.values(roles);
+
+    return chartData;
+  };
+
+  const drawChart = (chartData) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-
-    // Sample data for pie chart
-    const data = [5, 10, 25];
-    const labels = ['Admin', 'Moderator', 'User'];
-    const colors = ['red', 'green', 'blue'];
-    const chartRadius = 100;
+    const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
+    const chartRadius = Math.min(canvas.width, canvas.height) / 2;
     const chartCenterX = canvas.width / 2;
     const chartCenterY = canvas.height / 2;
 
     // Calculate the total sum of data values
-    const total = data.reduce((sum, value) => sum + value, 0);
+    const total = chartData.data.reduce((sum, value) => sum + value, 0);
 
     // Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw pie slices
     let startAngle = 0;
-    data.forEach((value, index) => {
+    chartData.data.forEach((value, index) => {
       const sliceAngle = (Math.PI * 2 * value) / total;
       const endAngle = startAngle + sliceAngle;
 
       context.beginPath();
-      context.fillStyle = colors[index];
+      context.fillStyle = colors[index % colors.length];
       context.moveTo(chartCenterX, chartCenterY);
       context.arc(chartCenterX, chartCenterY, chartRadius, startAngle, endAngle);
       context.closePath();
       context.fill();
 
       // Draw labels
-      const labelX = chartCenterX + Math.cos(startAngle + sliceAngle / 2) * (chartRadius + 20);
-      const labelY = chartCenterY + Math.sin(startAngle + sliceAngle / 2) * (chartRadius + 20);
+      const labelX = chartCenterX + Math.cos(startAngle + sliceAngle / 2) * (chartRadius / 2);
+      const labelY = chartCenterY + Math.sin(startAngle + sliceAngle / 2) * (chartRadius / 2);
       context.fillStyle = 'black';
       context.font = '12px Arial';
       context.textAlign = 'center';
-      context.fillText(labels[index], labelX, labelY);
+      context.fillText(`${chartData.labels[index]} (${value})`, labelX, labelY);
 
       startAngle = endAngle;
     });
-  }, []);
+  };
 
   return (
     <div>
