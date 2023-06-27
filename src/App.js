@@ -20,7 +20,7 @@ const App = () => {
         <Routes>
           {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
           {isLoggedIn && <Route path="/user" element={<UserModule />} />}
-          <Route path="/" element={<LoginPage />} />
+          {!isLoggedIn && <Route path="/" element={<LoginPage />} />}
         </Routes>
       </div>
     </Router>
