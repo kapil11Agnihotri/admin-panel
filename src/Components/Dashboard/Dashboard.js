@@ -1,19 +1,18 @@
-import React from 'react';
-import BarChart from '../Chart/BarChart'
-import PieChart from '../Chart/PieChart'
-import UserCountCard from '../UserCount/UserCountCard';
+import React from "react";
+import BarChart from "../Chart/BarChart";
+import PieChart from "../Chart/PieChart";
+import UserCountCard from "../UserCount/UserCountCard";
+import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
-    
   return (
-    <div style={{paddingLeft:"2rem"}}>
-      <h2>Dashboard</h2>
-      <UserCountCard/>
-      <div style={{display:"flex",padding:'1px'}}>
-      <BarChart/>
-      <PieChart/>
+    <div className={styles.dashboardContainer}>
+      <h2 className={styles.dashboardTitle}>Dashboard</h2>
+      <UserCountCard />
+      <div className={styles.chartContainer}>
+        <BarChart />
+        <PieChart />
       </div>
-      
     </div>
   );
 };

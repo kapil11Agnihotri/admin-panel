@@ -91,11 +91,17 @@ const UserModule = () => {
     }
   };
 
+  const formatDateString = (dateString) => {
+    const date = new Date(dateString);
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
   return (
-    <div className={styles.user-module}  style={{padding:'2rem'}}>
+    <div className={styles.userModule} style={{ padding: '2rem' }}>
       <h2>User Module</h2>
       <div>
-        <h3>Add User</h3>
+        {/* <h3>Add User</h3> */}
         <input
           type="text"
           placeholder="Name"
@@ -108,21 +114,25 @@ const UserModule = () => {
           value={role}
           onChange={(e) => setRole(e.target.value)}
         />
-        <button onClick={addUser}>Add User</button>
+        <button onClick={addUser}>Register User</button>
       </div>
 
       <div>
         <h3>User List</h3>
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              <span>{user.name}</span>
-              <span>{user.role}</span>
-              <span>{user.date}</span>
-              <button onClick={() => deleteUser(user.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
+        {users.length === 0 ? (
+          <p>No users found</p>
+        ) : (
+          <ul>
+            {users.map((user) => (
+              <li key={user.id}>
+                <span>{user.name}</span>
+                <span>{user.role}</span>
+                <span>{formatDateString(user.date)}</span>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
