@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import styles from "./BarChart.module.css"
 
 const BarChart = () => {
   const canvasRef = useRef(null);
@@ -75,8 +76,8 @@ const BarChart = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "2rem" }}>
-      <h3>Bar Chart</h3>
+    <div className={styles.barChartContainer}>
+      <h3 className={styles.chartTitle}>Bar Chart</h3>
       <canvas ref={canvasRef} width={400} height={250} />
     </div>
   );
