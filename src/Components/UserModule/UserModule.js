@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from './UserModule.module.css'
+import styles from './UserModule.module.css';
 
 const UserModule = () => {
   const [users, setUsers] = useState([]);
@@ -24,7 +24,6 @@ const UserModule = () => {
     }
   };
   
-
   const addUser = async () => {
     if (name && role) {
       const newUser = {
@@ -65,8 +64,6 @@ const UserModule = () => {
     }
   };
 
-
-
   const deleteUser = async (userId) => {
     try {
       await fetch(`https://admin-panel-2b58f-default-rtdb.firebaseio.com/users/${userId}.json`, {
@@ -98,10 +95,10 @@ const UserModule = () => {
   };
 
   return (
-    <div className={styles.userModule} style={{ padding: '2rem' }}>
+    
+    <div className={styles.userModule}>
       <h2>User Module</h2>
       <div>
-        {/* <h3>Add User</h3> */}
         <input
           type="text"
           placeholder="Name"
@@ -116,22 +113,34 @@ const UserModule = () => {
         />
         <button onClick={addUser}>Register User</button>
       </div>
-
+       
       <div>
         <h3>User List</h3>
         {users.length === 0 ? (
           <p>No users found</p>
         ) : (
-          <ul>
-            {users.map((user) => (
-              <li key={user.id}>
-                <span>{user.name}</span>
-                <span>{user.role}</span>
-                <span>{formatDateString(user.date)}</span>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+          <table className={styles.userTable}>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.role}</td>
+                  <td>{formatDateString(user.date)}</td>
+                  <td>
+                    <button onClick={() => deleteUser(user.id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     </div>

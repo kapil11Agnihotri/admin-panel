@@ -78,7 +78,7 @@ const BarChart = () => {
   return (
     <div className={styles.barChartContainer}>
       <h3 className={styles.chartTitle}>Bar Chart</h3>
-      <canvas ref={canvasRef} width={400} height={250} />
+      <canvas ref={canvasRef} width={350} height={250} />
     </div>
   );
 };

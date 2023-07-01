@@ -23,11 +23,13 @@ const UserCountCard = ({ count }) => {
   };
 
   return (
+    
     <div className={styles.userCountCard}>
-      <h3 className={styles.title}>Registered-user</h3>
       <p className={styles.count}>{userCount}</p>
+      <p className={styles.title}>Registered-user</p>
       <Link to="/user" className={styles.button}>User-details...</Link>
     </div>
+    
   );
 };
 
