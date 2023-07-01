@@ -1,10 +1,13 @@
 .userCountCard {
-  background-color: #c6c6c6e6;
+  background-color: #06cdf0e6;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 20vw;
-
+  width: 27vw;
+  margin: 0;
+}
+.userCountCard:hover{
+  background-color: #00b3ffe6;
 }
 
 .title {
@@ -17,4 +20,21 @@
   font-size: 24px;
   font-weight: bold;
   
+}
+.button {
+  display: block;
+  background-color: #fff;
+  color: #06cdf0;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #3300ff;
+  color: #fff;
 }

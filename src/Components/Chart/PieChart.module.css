@@ -1,5 +1,12 @@
 .pieChartContainer {
+  margin-top: 3rem;
     text-align: center;
+    background-color:blanchedalmond;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .pieChartContainer:hover{
+    background-color:rgb(235, 182, 151);
   }
   
   .chartTitle {

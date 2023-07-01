@@ -7,8 +7,11 @@ import styles from "./Dashboard.module.css";
 const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
-      <h2 className={styles.dashboardTitle}>Dashboard</h2>
-      <UserCountCard />
+      {/* <h2 className={styles.dashboardTitle}>Dashboard</h2> */}
+      <div>
+        <UserCountCard />
+      </div>
+
       <div className={styles.chartContainer}>
         <BarChart />
         <PieChart />

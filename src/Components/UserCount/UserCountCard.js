@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./UserCountCard.module.css";
+import { Link } from "react-router-dom";
+
 
 const UserCountCard = ({ count }) => {
   const [userCount, setUserCount] = useState(0);
@@ -22,8 +24,9 @@ const UserCountCard = ({ count }) => {
 
   return (
     <div className={styles.userCountCard}>
-      <h3 className={styles.title}>User Count</h3>
+      <h3 className={styles.title}>Registered-user</h3>
       <p className={styles.count}>{userCount}</p>
+      <Link to="/user" className={styles.button}>User-details...</Link>
     </div>
   );
 };

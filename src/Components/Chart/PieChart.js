@@ -48,7 +48,7 @@ const PieChart = () => {
   const drawChart = (chartData) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    const colors = ["purple", "green", "blue", "yellow", "brown", "red"];
+    const colors = ["purple", "green", "blue", "yellow", "red", "red"];
     const chartRadius = Math.min(canvas.width, canvas.height) / 4;
     const chartCenterX = canvas.width / 2;
     const chartCenterY = canvas.height / 2;

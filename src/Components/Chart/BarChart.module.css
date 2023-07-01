@@ -1,5 +1,11 @@
 .barChartContainer {
-    padding-left: 2rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: rgb(250, 250, 118);
+    border-radius: 10px;
+  }
+  .barChartContainer:hover{
+    background-color: yellow;
   }
   
   .chartTitle {

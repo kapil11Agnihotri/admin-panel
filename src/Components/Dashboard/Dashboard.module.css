@@ -9,7 +9,8 @@
   
   .chartContainer {
     display: flex;
-    gap: 1rem;
+    gap: 6rem;
+    
   }
   
   @media (max-width: 768px) {
