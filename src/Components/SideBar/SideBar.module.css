@@ -2,21 +2,26 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
-  width: 200px;
+  width: 250px;
+}
+.sidebar p{
+  color: rgb(246, 106, 106);
+  padding: 10px;
+  font-size: large;
 }
 
 .link {
   display: block;
   margin-bottom: 10px;
   color: #fff;
+  padding: 8px;
   text-decoration: none;
+ width: auto;
 }
-
-.logoutButton {
-  background-color: #f44336;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+.link:hover{
+  background-color: black;
+  padding: 8px;
+  border-radius: 4px;
   cursor: pointer;
 }
+

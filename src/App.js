@@ -5,6 +5,7 @@ import Sidebar from "./Components/SideBar/SideBar"
 import UserModule from "./Components/UserModule/UserModule";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { AuthContext } from "./Store/AuthContext";
+import Header from "./Components/Header/Header";
 
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
 
   return (
     <Router>
+       {isLoggedIn && <Header/>}
       <div style={{display:'flex'}}>
+       
         {isLoggedIn && <Sidebar/>}
 
         <Routes>
